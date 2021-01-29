@@ -1,0 +1,8 @@
+{
+   "Description": "rhcos-4.6.8-x86_64-aws.x86_64",
+   "Format": "vmdk",
+   "UserBucket": {
+      "S3Bucket": "rhcosscanimage",
+      "S3Key": "rhcos-4.6.8-x86_64-aws.x86_64.vmdk"
+   }
+}
