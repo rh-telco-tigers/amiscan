@@ -6,9 +6,9 @@ If you wish to use a private AMI for RHCOS installs, you will need to create thi
 
 You will need the following tools installed on your machine to follow these instructions:
 
-    * awscli - see the following documentation for install process [Installing, updating, and uninstalling the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
-    * curl
-    * gunzip
+* awscli - see the following documentation for install process [Installing, updating, and uninstalling the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+* curl
+* gunzip
 
 ## Importing a vmdk for use as an AMI
 
