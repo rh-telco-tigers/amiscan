@@ -117,9 +117,13 @@ $ aws ec2 run-instances --subnet-id <subnetID> \
   --user-data file://workerpayload.ign
 ```
 
+If you are unable to use the aws cli tool, you can also create an instance using cloudformation templates. See the README-cftemplate.md file located in the cf directory of this repo.
+
 Wait for the new EC2 instance to start, and then ssh to the machine using the ssh key you supplied in the ignition file. Be sure to use "core" as the user name.
 
 ssh core@\<ip address of new machine\>
+
+*NOTE* If you are unable to connect to the server via ssh, you will need to check the AWS default Security Group to ensure that SSH is allowed through. For more information on this please see [Authorize inbound traffic for your Linux instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
 
 At this point you are connected to the machine as the "core" user. This user has full "sudo" rights. Keep in mind that the RHCOS machine does not have tools like yum or dnf to install applications, you will need to run your scan tools from container images. Examples of running two scan tools are listed below.
 

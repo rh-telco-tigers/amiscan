@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "RhcosAmi", 
+    "ParameterValue": "ami-0346f64579665ce3c" 
+  },
+  {
+    "ParameterKey": "Subnet", 
+    "ParameterValue": "subnet-0655610aa6217f120" 
+  },
+  {
+    "ParameterKey": "ignitionImage",
+    "ParameterValue": ""
+  },
+  {
+    "ParameterKey": "WorkerInstanceType", 
+    "ParameterValue": "m4.large" 
+  }
+]

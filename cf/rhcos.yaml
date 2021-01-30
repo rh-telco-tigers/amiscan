@@ -1,0 +1,84 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Template for launching an empty RHCOS image
+
+Parameters:
+  RhcosAmi:
+    Description: Current Red Hat Enterprise Linux CoreOS AMI to use for bootstrap.
+    Type: AWS::EC2::Image::Id
+  Subnet:
+    Description: The subnets, recommend private, to launch the master nodes into.
+    Type: AWS::EC2::Subnet::Id
+  IgnitionImage:
+    Description: The base64 encoded ignition image
+    Type: String
+  WorkerInstanceType:
+    Default: m5.large
+    Type: String
+    AllowedValues:
+    - "m4.large"
+    - "m4.xlarge"
+    - "m4.2xlarge"
+    - "m4.4xlarge"
+    - "m4.8xlarge"
+    - "m4.10xlarge"
+    - "m4.16xlarge"
+    - "m5.large"
+    - "m5.xlarge"
+    - "m5.2xlarge"
+    - "m5.4xlarge"
+    - "m5.8xlarge"
+    - "m5.10xlarge"
+    - "m5.16xlarge"
+    - "c4.large"
+    - "c4.xlarge"
+    - "c4.2xlarge"
+    - "c4.4xlarge"
+    - "c4.8xlarge"
+    - "r4.large"
+    - "r4.xlarge"
+    - "r4.2xlarge"
+    - "r4.4xlarge"
+    - "r4.8xlarge"
+    - "r4.16xlarge"
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+    - Label:
+        default: "Host Information"
+      Parameters:
+      - WorkerInstanceType
+      - RhcosAmi
+    - Label:
+        default: "Network Configuration"
+      Parameters:
+      - Subnet
+    ParameterLabels:
+      Subnet:
+        default: "Subnet"
+      WorkerInstanceType:
+        default: "Worker Instance Type"
+      RhcosAmi:
+        default: "Red Hat Enterprise Linux CoreOS AMI ID"
+
+Resources:
+  Worker0:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref RhcosAmi
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          VolumeSize: "120"
+          VolumeType: "gp2"
+      InstanceType: !Ref WorkerInstanceType
+      NetworkInterfaces:
+      - AssociatePublicIpAddress: "false"
+        DeviceIndex: "0"
+        SubnetId: !Ref "Subnet"
+      UserData: !Ref IgnitionImage
+
+Outputs:
+  PrivateIP:
+    Description: The compute node private IP address.
+    Value: !GetAtt Worker0.PrivateIp
