@@ -49,7 +49,7 @@ aws ec2 import-snapshot --region us-east-2 \
      --disk-container file://containers.json
 ```
 
-**NOTE:**  If you get an error about not having a vmimport policy you will need to create a vmimport policy. See the section in the Appendix below for instructions on how to do this.
+**NOTE:**  If you get an error about not having a vmimport policy you will need to create a vmimport policy. See the section in the [Appendix](https://github.com/rh-telco-tigers/amiscan#creating-a-vmimport-policy) below for instructions on how to do this.
 
 The import process will take some time. Use the following command to watch for the import to complete.
 
